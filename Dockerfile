@@ -5,7 +5,7 @@ RUN go mod download
 COPY . /netreap/
 ARG VERSION
 RUN go build -ldflags "-s -w -X 'main.Version=$VERSION'"
-FROM gcr.io/distroless/base-debian11
+FROM gcr.io/distroless/base-debian12
 WORKDIR /
 COPY --from=builder /netreap/netreap /usr/bin/netreap
 ENTRYPOINT ["/usr/bin/netreap"]
